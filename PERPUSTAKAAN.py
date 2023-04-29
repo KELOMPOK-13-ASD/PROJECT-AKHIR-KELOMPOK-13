@@ -137,3 +137,50 @@ class LinkedBuku:
         for i in range(index):
             nodeUpdate = nodeUpdate.next
         nodeUpdate.Status = "Out Of Stock"
+
+       def insertData(self, Judul, Pengarang, Penerbit, Genre, Tahun, Status):
+        if self.head is None:
+            self.head = NodeBuku(Judul, Pengarang, Penerbit, Genre, Tahun, Status)
+            self.count += 1
+        else:
+            nodeAkhir = self.head
+            while nodeAkhir.next is not None:
+                nodeAkhir = nodeAkhir.next
+            nodeAkhir.next = NodeBuku(Judul, Pengarang, Penerbit, Genre, Tahun, Status)
+            self.count += 1
+    
+    def newData(self, JudulBaru, PengarangBaru, PenerbitBaru, GenreBaru, TahunBaru, StatusBaru):
+        try:
+            LinkedBuku.insertData(JudulBaru, PengarangBaru, PenerbitBaru, GenreBaru, TahunBaru, StatusBaru)
+            print()
+            print(">>> Data Baru Berhasil Ditambakan! <<<")
+            print()
+            return True
+        except ValueError:
+            print("Input Dengan Benar!")
+            return False
+        
+    def duplicateData(self, judul):
+        current = self.head
+        while current is not None:
+            if current.Judul.lower() == judul:
+                return True
+            current = current.next
+        return False
+    
+    def deleteNode(self, key):
+        temp = self.head
+        if temp is not None:
+            if temp.Judul == key:
+                self.head = temp.next
+                temp = None
+                return
+            while temp is not None:
+                if temp.Judul == key:
+                    break
+                prev = temp
+                temp = temp.next
+            if temp == None:
+                return
+            prev.next = temp.next
+            temp = None
