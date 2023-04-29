@@ -415,6 +415,7 @@ class User:
                     os.system("cls")
                     print()
                     print("{} saat ini tidak tersedia untuk dipinjam".format(key))
+                    break
             except ValueError:
                 print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
                 print("                Pilihan tidak tersedia               ")
