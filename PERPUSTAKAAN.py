@@ -519,3 +519,114 @@ def ulang():
             exit()
         else:
             print(">>> Masukkan Dengan Benar! <<<")
+
+Admin = Admin()
+User = User()
+
+LinkedBuku.insertData("Laskar Pelangi", "Andrea Hirata", "Bentang Pustaka", "Roman", "2005", "Available")
+LinkedBuku.insertData("Cantik Itu Luka", "Eka Kurniawan", "Gramedia Pustaka Utama", "Fiksi", "2022", "Available")
+LinkedBuku.insertData("Bibi Gill", "Tere Liye", "Penerbit Sabak GRIP", "Fantasi", "2022", "Available")
+LinkedBuku.insertData("Hujan", "Tere Liye", "Gramedia Pustaka Utama", "Romansa", "2016", "Available")
+LinkedBuku.insertData("Mariposa", "Luluk HF", "Coconat Books", "Romance", "2018", "Available")
+LinkedBuku.insertData("Dikta dan Hukum", "Dhiaan Farah", "Asoka Aksara", "Romansa", "2021", "Available")
+LinkedBuku.insertData("Tentang Kamu", "Tere Liye", "Republika", "Fiksi/Romansa", "2016", "Available")
+LinkedBuku.insertData("Laut Bercerita", "Leila Salikha Chudori", "Kepustakaan Populer Gramedia", "Historical Fiction", "2017", "Available")
+LinkedBuku.insertData("Filosofi Teras", "Henry Manampiring", "Kompas", "Non-Fiksi", "2018", "Available")
+LinkedBuku.insertData("Garis Batas", "Agustinus Wibowo", "Gramedia Pustaka Utama", "Non-Fiksi", "2020", "Available")
+
+
+while True:
+    try:
+        menu_utama()
+        opsi = int(input("Masukkan Pilihan: "))
+        if opsi == 1:
+            os.system("cls")
+            login_admin()
+            while True:
+                try:
+                    os.system("cls")
+                    menu_admin()
+                    tanya = int(input("Masukkan Pilihan: "))
+                    if tanya == 1:
+                        os.system("cls")
+                        Admin.lihat_buku()
+                        print("")
+                        ulang()
+                    elif tanya == 2:
+                        os.system("cls")
+                        Admin.cari_buku()
+                        print("")
+                        ulang()
+                    elif tanya == 3:
+                        os.system("cls")
+                        Admin.tambah_buku()
+                        print("")
+                        ulang()
+                    elif tanya == 4:
+                        os.system("cls")
+                        Admin.hapus_buku()
+                        print("")
+                        ulang()
+                    elif tanya == 5:
+                        os.system("cls")
+                        break
+                    else:
+                        os.system("cls")
+                        print(">>> Pilihan Tidak Tersedia! <<<".center(80))
+                except KeyboardInterrupt:
+                    os.system("cls")
+                    print(">>> Pilihan tidak tersedia! <<<".center(80))
+        elif opsi == 2:
+            os.system("cls")
+            login_pengunjung()
+            while True:
+                try:
+                    os.system("cls")
+                    menu_pengunjung()
+                    tanya = int(input("Masukkan Pilihan: "))
+                    if tanya == 1:
+                        os.system("cls")
+                        User.lihat_buku()
+                        ulang()
+                    elif tanya == 2:
+                        os.system("cls")
+                        User.cari_buku()
+                        ulang()
+                    elif tanya == 3:
+                        os.system("cls")
+                        User.pinjam_buku()
+                        ulang()
+                    elif tanya == 4:
+                        os.system("cls")
+                        User.kembalikan_buku()
+                        ulang()
+                    elif tanya == 5:
+                        os.system("cls")
+                        User.history()
+                        ulang()
+                    elif tanya == 6:
+                        os.system("cls")
+                        break
+                    else:
+                        os.system("cls")
+                        print(">>> Pilihan Tidak Tersedia! <<<".center(80))
+                except KeyboardInterrupt:
+                    os.system("cls")
+                    print(">>> Pilihan tidak tersedia! <<<".center(80))
+        elif opsi == 3:
+            os.system("cls")
+            registrasi_pengunjung()
+            while True:
+                os.system("cls")
+                print(">>> Registrasi Berhasil, Silahkan Login! <<<".center(80))
+                break
+        elif opsi == 4:
+            os.system("cls")
+            print("Terima Kasih Telah Berkunjung ^_^".center(80))
+            exit()
+        else:
+            os.system("cls")
+            print(">>> Pilihan Tidak Tersedia! <<<".center(80))
+    except KeyboardInterrupt:
+        os.system("cls")
+        print(">>> Pilihan tidak tersedia! <<<".center(80))
