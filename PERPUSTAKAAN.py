@@ -291,3 +291,21 @@ class LinkedBuku:
         print("Status       : {}".format(arr[index_buku]["Status"]))
         
 buku = LinkedBuku()
+
+class Admin:
+    def lihat_buku(self):
+        LinkedBuku.head = LinkedBuku.mergeSort(LinkedBuku.head)
+        LinkedBuku.printList()
+    
+    def cari_buku(self):
+        cari = input("Masukkan Judul Buku: ")
+        print()
+        LinkedBuku.head = LinkedBuku.mergeSort(LinkedBuku.head)
+        listArray = LinkedBuku.makeList()
+        n = len(listArray)
+        search = LinkedBuku.jumpSearch(listArray, cari, n)
+        index = int(search)
+        if index == -1:
+            print(">>> Buku {} Tidak Ditemukan! <<<".format(cari))
+        else:
+            LinkedBuku.printDict(listArray, index)
