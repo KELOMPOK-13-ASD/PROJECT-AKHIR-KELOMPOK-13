@@ -36,7 +36,7 @@ Program ini menggunakan database mysql pada registrasi dan login dengan cara ker
 - Jika user memilih login admin maka user akan dimintai untuk memasukkan username dan passwaord yang sudah ditentukan sebelumnya
 
 ![alt text](https://github.com/KELOMPOK-13-ASD/Project-Akhir_Kelompok-13/blob/master/Username%20Pengunjung.png?raw=true)
-- Jika user memilih login pengunjung maka user akan dimintai untuk memasukkan username dan juga password yang telah dbuat oleh user pada saat registrasi atau pembuatan akun
+- Jika user memilih login pengunjung maka user akan dimintai untuk memasukkan username dan juga password yang telah dibuat oleh user pada saat registrasi atau pembuatan akun
 
 ![alt text](https://github.com/KELOMPOK-13-ASD/Project-Akhir_Kelompok-13/blob/master/Registrasi.png?raw=true)
 - Jika user memilih registrasi maka user akan  dimintai untuk membuat username dan password terlebih dahulu, jika username ternyata telah ada di dalam database, maka user akan dimintai untuk memasukkan username yang lain
