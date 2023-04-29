@@ -353,47 +353,48 @@ class Admin:
             print("                Pilihan tidak tersedia               ")
 
 admin = Admin()
-                class User:
+
+class User:
     def __init__(self):
         self.historyBuku = []
         
     def lihat_buku(self):
-        LinkedBuku.head = LinkedBuku.mergeSort(LinkedBuku.head)
-        LinkedBuku.printList()
+        buku.head = buku.mergeSort(buku.head)
+        buku.printList()
 
     def cari_buku(self):
         cari = input("Masukkan Judul Buku: ")
         print()
-        LinkedBuku.head = LinkedBuku.mergeSort(LinkedBuku.head)
-        listArray = LinkedBuku.makeList()
+        buku.head = buku.mergeSort(buku.head)
+        listArray = buku.makeList()
         n = len(listArray)
-        search = LinkedBuku.jumpSearch(listArray, cari, n)
+        search = buku.jumpSearch(listArray, cari, n)
         index = int(search)
         if index == -1:
             print(">>> Buku {} Tidak Ditemukan! <<<".format(cari))
         else:
-            LinkedBuku.printDict(listArray, index)
+            buku.printDict(listArray, index)
 
     def pinjam_buku(self):
         while True:
-            LinkedBuku.head = LinkedBuku.mergeSort(LinkedBuku.head)
-            LinkedBuku.printList()
+            buku.head = buku.mergeSort(buku.head)
+            buku.printList()
             try:
                 print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
                 pinjam = int(input("Masukkan Nomor Pilihan: "))
                 print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
                 os.system("cls")
                 index = pinjam - 1
-                LinkedBuku.getData(index)
-                status_pinjam = LinkedBuku.getStatus(index)
+                buku.getData(index)
+                status_pinjam = buku.getStatus(index)
                 if status_pinjam == "Available":
-                    key = LinkedBuku.searchKey(index)
+                    key = buku.searchKey(index)
                     print()
                     pinjam_buku = input("Ingin Menambahkan {} Ke Daftar Bacaan (y/n)? ".format(key))
                     if pinjam_buku.lower() == "y":
                         acc = input("Apakah Setuju Dengan Syarat Dan Ketentuan (y/n)? ")
                         if acc.lower() == "y":
-                            LinkedBuku.ubahStatus(index)
+                            buku.ubahStatus(index)
                             self.historyBuku.append(key)
                             print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
                             print(">>> Buku Berhasil Ditambahkan ke Daftar Bacaan! <<<  ")
@@ -401,14 +402,14 @@ admin = Admin()
                             break
                         else:
                             print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-                            print(">>> Pengajuan peminjaman buku dibatalkan <<<".center(80))
+                            print("        >>> Pengajuan peminjaman buku dibatalkan <<<")
                             break
                     else:
                         print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
                         print("Tambahkan buku ke dalam daftar bacaan jika anda bersedia ^_^ ")
                         break
                 elif status_pinjam == "Out of Stock" or "out of stock":
-                    key = LinkedBuku.searchKey(index)
+                    key = buku.searchKey(index)
                     os.system("cls")
                     print()
                     print("{} saat ini tidak tersedia untuk dipinjam".format(key))
@@ -417,10 +418,15 @@ admin = Admin()
                 print("                Pilihan tidak tersedia               ")
 
     def kembalikan_buku(self):
-        LinkedBuku.head = LinkedBuku.mergeSort(LinkedBuku.head)
+        buku.head = buku.mergeSort(buku.head)
         while True:
             try:
-                if len(self.historyBuku) >= 1:
+                if len (self.historyBuku) == 0:
+                    print("┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈")
+                    print("                Tidak Ada Catatan Peminjaman            ")
+                    print("┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈")
+                    break
+                else:
                     print("┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈")
                     print("                  Daftar Peminjaman             ")
                     print("┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈")
@@ -428,43 +434,39 @@ admin = Admin()
                     for i in self.historyBuku:
                         print(" {}. {}".format(nomor, i))
                         nomor += 1
-                print()
-                hapusBaca=int(input("Pilih Nomor Buku yang Ingin Dikembalikan>> "))
-                print()
-                index = hapusBaca - 1
-                if hapusBaca>0:
-                        hapusBaca-=1
+                    print()
+                    hapusBaca=int(input("Pilih Nomor Buku yang Ingin Dikembalikan>> "))
+                    print()
+                    index = hapusBaca - 1
+                    if hapusBaca > 0:
+                        hapusBaca -= 1
                         self.historyBuku[hapusBaca]
+                        confirm = input("Apakah Anda ingin Mengembalikan {} (y/t)? ".format(self.historyBuku[hapusBaca]))
+                        print()
+                        if confirm.lower() == "y":
+                            buku.ubahStatus2(index)
+                            print("┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈")
+                            print("Berhasil Mengembalikan",self.historyBuku[hapusBaca])
+                            print("┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈") 
+                            if self.historyBuku[hapusBaca] in self.historyBuku:
+                                self.historyBuku.pop(hapusBaca)
+                            break
+                        else:
+                            print("\n",">>> Pengembalian Buku Dibatalkan! <<<") 
+                            break
+                    else:
+                        print("\n>>> Mohon Input Yang Benar! <<<")
                         break
-                else:
-                    print("\nmohon input yang benar") 
             except ValueError:
-                print("\nmohon input yang benar")
+                print("\n>>> Mohon Input Yang Benar! <<<")
             except IndexError:
-                print("\nmohon input yang benar")
-        try:
-            confirm = input("Apakah Anda ingin Mengembalikan {} (y/t)? ".format(self.historyBuku[hapusBaca]))
-            print()
-            if confirm.lower() == "y":  
-                LinkedBuku.ubahStatus2(index)
-                print("┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈")
-                print("Berhasil Mengembalikan",self.historyBuku[hapusBaca])
-                print("┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈") 
-                print()
-                if self.historyBuku[hapusBaca] in self.historyBuku:
-                    self.historyBuku.pop(hapusBaca)
-            else:
-                print("\n",">>> Pengembalian Buku dibatalkan <<<")  
-        except ValueError:
-                print("—————————————————————————————————————————————————————")
-                print("                Pilihan tidak tersedia               ")
+                print("\n>>> Mohon Input Yang Benar! <<<")
     
     def history(self):
         if len (self.historyBuku) == 0:
              print("┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈")
              print("                Tidak Ada Catatan Peminjaman            ")
              print("┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈")
-
         else:
             if len(self.historyBuku) >= 1:
                 print("┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈")
@@ -475,8 +477,8 @@ admin = Admin()
                     print(" {}. {}".format(nomor, i))
                     nomor += 1
                 print()
-
-                def menu_utama():
+                
+def menu_utama():
     print("========================================".center(80))
     print("|                Menu Utama             |".center(80))
     print("========================================".center(80))
