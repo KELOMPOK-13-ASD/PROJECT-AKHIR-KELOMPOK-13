@@ -294,23 +294,23 @@ buku = LinkedBuku()
 
 class Admin:
     def lihat_buku(self):
-        LinkedBuku.head = LinkedBuku.mergeSort(LinkedBuku.head)
-        LinkedBuku.printList()
+        buku.head = buku.mergeSort(buku.head)
+        buku.printList()
     
     def cari_buku(self):
         cari = input("Masukkan Judul Buku: ")
         print()
-        LinkedBuku.head = LinkedBuku.mergeSort(LinkedBuku.head)
-        listArray = LinkedBuku.makeList()
+        buku.head = buku.mergeSort(buku.head)
+        listArray = buku.makeList()
         n = len(listArray)
-        search = LinkedBuku.jumpSearch(listArray, cari, n)
+        search = buku.jumpSearch(listArray, cari, n)
         index = int(search)
         if index == -1:
             print(">>> Buku {} Tidak Ditemukan! <<<".format(cari))
         else:
-            LinkedBuku.printDict(listArray, index)
+            buku.printDict(listArray, index)
 
-            def tambah_buku(self):
+    def tambah_buku(self):
         tambah = True
         print("Lengkapi Data Berikut: ")
         while tambah == True:
@@ -321,28 +321,28 @@ class Admin:
             tahun = int(input("Tahun Terbit: "))
             status = ("Available")
             input("Status: Available")
-            check = LinkedBuku.duplicateData(buku_baru.lower())
+            check = buku.duplicateData(buku_baru.lower())
             if check == True:
                 print(">>> Buku Sudah Ada, Silahkan Tambahkan Judul Buku Yang Lain! <<<")
             elif check == False:
                 buku_baru = buku_baru.capitalize()
-                LinkedBuku.newData(buku_baru, pengarang, penerbit, genre, tahun, status)
+                buku.newData(buku_baru, pengarang, penerbit, genre, tahun, status)
                 tambah = False
 
     def hapus_buku(self):
-        LinkedBuku.head = LinkedBuku.mergeSort(LinkedBuku.head)
-        LinkedBuku.printList()
+        buku.head = buku.mergeSort(buku.head)
+        buku.printList()
         try:
             print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
             hapus_buku = int(input("Masukkan Nomor Yang Ingin Dihapus: "))
             index = hapus_buku - 1
-            key = LinkedBuku.searchKey(index)
+            key = buku.searchKey(index)
             if key != None:
                 print()
                 tanya = input("Apakah Anda Ingin Menghapus {} (y/n)? ".format(key))
                 print()
                 if tanya.lower() == "y":
-                    LinkedBuku.deleteNode(key)
+                    buku.deleteNode(key)
                     print(">>> Buku Berhasil Dihapus! <<<")
                 elif tanya.lower() == "n":
                     print(">>> Penghapusan Buku Dibatalkan! <<<")
@@ -352,6 +352,7 @@ class Admin:
             print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
             print("                Pilihan tidak tersedia               ")
 
+admin = Admin()
                 class User:
     def __init__(self):
         self.historyBuku = []
