@@ -93,3 +93,13 @@ def login_pangunjung():
         except KeyboardInterrupt:
             os.system("cls")
             print("Masukkan Inputan Yang Benar!")
+
+ class NodeBuku:
+    def __init__(self, Judul, Pengarang, Penerbit, Genre, Tahun, Status):
+        self.Judul = Judul
+        self.Pengarang = Pengarang
+        self.Penerbit = Penerbit
+        self.Genre = Genre
+        self.Tahun = Tahun
+        self.Status = Status
+        self.next = None               
