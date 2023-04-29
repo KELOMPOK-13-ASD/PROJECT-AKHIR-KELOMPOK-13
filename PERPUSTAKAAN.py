@@ -1,95 +1,88 @@
 import os
 import math
 import pwinput
+import mysql.connector
 
-admin = {"Username" : ["ADMIN"],
-        "Password" : ["111"]}
-pengunjung = {"Username" : ["MUTI", "ALLYYA", "RIZANI"],
-        "Password" : ["001", "030", "039"]}
+db_perpus = mysql.connector.connect(
+    host="db4free.net",
+    user="muthmainnah",
+    password="perpus13",
+    database="perpustakaan")
 
-def registrasi_pengunjung():
-    while True:
-        try:
-            Username = input("Masukkan Username Baru : ")
-            if len(Username) > 15:
-                os.system("cls")
-                print("Maksimal Memasukkan 15 Karakter Pada Username!")
-            else:
-                huruf = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
-                user = ""
-                for i in Username:
-                    if i in huruf:
-                        user = user + i
-                    else:
-                        user = ""
-                        os.system("cls")
-                        print("Username dan Password Hanya Dapat Berupa Huruf Kapital dan Angka")
-                        break
-                if user != "":
-                    user = user
-                    if Username in pengunjung.get("Username"):
-                        os.system("cls")
-                        print("Username Telah Digunakan")
-                    else:
-                        Password = pwinput.pwinput("Masukkan Password Baru : ")
-                        if len(Password) > 15:
-                            os.system("cls")
-                            print("Maksimal Memasukkan 15 Karakter Pada Password!")
-                        else:
-                            pw = ""
-                            for i in Password:
-                                if i in huruf:
-                                    pw = pw + i
-                                else:
-                                    pw = ""
-                                    os.system("cls")
-                                    print("Username dan Password Hanya Dapat Berupa Huruf Kapital dan Angka")
-                                    break
-                            if pw != "":
-                                pw = pw
-                                pengunjung.get("Username").append(Username)
-                                pengunjung.get("Password").append(Password)
-                                break
-        except KeyboardInterrupt:
-            os.system("cls")
-            print("Masukkan Inputan Yang Benar!")
+try:
+    cursor = db_perpus.cursor()
+except mysql.connector.Error as err:
+    print("Error Code : ", err.errno)
+    print("Error Message : ", err.msg)
+    exit()
 
 def login_admin():
     while True:
         try:
-            Username = input("Masukkan Username : ")
-            Password = pwinput.pwinput("Masukkan Password : ")
+            Username = input("Masukkan Username: ")
+            Password = pwinput.pwinput("Masukkan Password: ")
             try:
-                login = admin.get("Username").index(Username)
-                if Username == admin.get("Username")[login] and Password == admin.get("Password")[login]:
-                    os.system('cls')
+                query = "SELECT * FROM ADMIN WHERE Username = %s AND Password = %s"
+                values = (Username, Password)
+                cursor = db_perpus.cursor()
+                cursor.execute(query, values)
+                User = cursor.fetchone()
+                if User:
+                    os.system("cls")
                     break
                 else:
                     os.system("cls")
-                    print("Password Anda Salah! ")
+                    print("Username Atau Password Anda Salah!")
             except ValueError:
                 os.system("cls")
-                print("Username Anda Salah! ")
+                print("Username Atau Password Anda Salah!")
         except KeyboardInterrupt:
             os.system("cls")
             print("Masukkan Inputan Yang Benar!")
 
-def login_pangunjung():
+def login_pengunjung():
     while True:
         try:
-            Username = input("Masukkan Username : ")
-            Password = pwinput.pwinput("Masukkan Password : ")
+            Username = input("Masukkan Username: ")
+            Password = pwinput.pwinput("Masukkan Password: ")
             try:
-                login = pengunjung.get("Username").index(Username)
-                if Username == pengunjung.get("Username")[login] and Password == pengunjung.get("Password")[login]:
-                    os.system('cls')
+                query = "SELECT * FROM USER WHERE Username = %s AND Password = %s"
+                values = (Username, Password)
+                cursor = db_perpus.cursor()
+                cursor.execute(query, values)
+                User = cursor.fetchone()
+                if User:
+                    os.system("cls")
                     break
                 else:
                     os.system("cls")
-                    print("Password Anda Salah! ")
+                    print("Username Atau Password Anda Salah!")
             except ValueError:
                 os.system("cls")
-                print("Username Anda Salah! ")
+                print("Username Atau Password Anda Salah!")
+        except KeyboardInterrupt:
+            os.system("cls")
+            print("Masukkan Inputan Yang Benar!")
+
+def registrasi_pengunjung():
+    while True:
+        try:
+            Username = input("Masukkan Username Baru: ")
+            Password = pwinput.pwinput("Masukkan Password Baru: ")
+            cursor = db_perpus.cursor()
+            query = "SELECT * FROM USER WHERE Username = %s"
+            values = [(Username)]
+            cursor.execute(query, values)
+            User = cursor.fetchone()
+            if User:
+                os.system("cls")
+                print("Username Sudah Ada!")
+            else:
+                query = "INSERT INTO USER (Username, Password) VALUES (%s, %s)"
+                values = (Username, Password)
+                cursor.execute(query, values)
+                db_perpus.commit()
+                break
         except KeyboardInterrupt:
             os.system("cls")
             print("Masukkan Inputan Yang Benar!")
