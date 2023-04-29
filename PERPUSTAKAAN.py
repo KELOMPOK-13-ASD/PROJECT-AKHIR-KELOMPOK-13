@@ -309,3 +309,45 @@ class Admin:
             print(">>> Buku {} Tidak Ditemukan! <<<".format(cari))
         else:
             LinkedBuku.printDict(listArray, index)
+
+            def tambah_buku(self):
+        tambah = True
+        print("Lengkapi Data Berikut: ")
+        while tambah == True:
+            buku_baru = input("Judul: ")
+            pengarang = input("Pengarang: ")
+            penerbit = input("Penerbit: ")
+            genre = input("Genre: ")
+            tahun = int(input("Tahun Terbit: "))
+            status = ("Available")
+            input("Status: Available")
+            check = LinkedBuku.duplicateData(buku_baru.lower())
+            if check == True:
+                print(">>> Buku Sudah Ada, Silahkan Tambahkan Judul Buku Yang Lain! <<<")
+            elif check == False:
+                buku_baru = buku_baru.capitalize()
+                LinkedBuku.newData(buku_baru, pengarang, penerbit, genre, tahun, status)
+                tambah = False
+
+    def hapus_buku(self):
+        LinkedBuku.head = LinkedBuku.mergeSort(LinkedBuku.head)
+        LinkedBuku.printList()
+        try:
+            print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+            hapus_buku = int(input("Masukkan Nomor Yang Ingin Dihapus: "))
+            index = hapus_buku - 1
+            key = LinkedBuku.searchKey(index)
+            if key != None:
+                print()
+                tanya = input("Apakah Anda Ingin Menghapus {} (y/n)? ".format(key))
+                print()
+                if tanya.lower() == "y":
+                    LinkedBuku.deleteNode(key)
+                    print(">>> Buku Berhasil Dihapus! <<<")
+                elif tanya.lower() == "n":
+                    print(">>> Penghapusan Buku Dibatalkan! <<<")
+                else:
+                    print(">>> Masukkan Dengan Benar! <<<")
+        except ValueError:
+            print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+            print("                Pilihan tidak tersedia               ")
