@@ -1,3 +1,8 @@
+# KELOMPOK 13
+# MUTHMAINNAH AISYAH (2209116001)
+# ALLYYA NUR AZIZAH (2209116030)
+# RIZANI RUPA MADAUN (2209116039)
+
 import os
 import math
 import pwinput
@@ -87,7 +92,7 @@ def registrasi_pengunjung():
             os.system("cls")
             print("Masukkan Inputan Yang Benar!")
 
- class NodeBuku:
+class NodeBuku:
     def __init__(self, Judul, Pengarang, Penerbit, Genre, Tahun, Status):
         self.Judul = Judul
         self.Pengarang = Pengarang
@@ -95,14 +100,12 @@ def registrasi_pengunjung():
         self.Genre = Genre
         self.Tahun = Tahun
         self.Status = Status
-        self.next = None    
-        
+        self.next = None
+
 class LinkedBuku:
     def __init__(self):
         self.head = None
         self.count = 0
-        self.riwayatPinjam = []
-        self.datarBacaan = []
 
     def getData(self, index):
         if index < 0 or index > self.count-1:
@@ -113,7 +116,7 @@ class LinkedBuku:
             nodeTampil = self.head
             for i in range(index):
                 nodeTampil = nodeTampil.next
-            LinkedBuku.printData(nodeTampil)
+            buku.printData(nodeTampil)
 
     def getStatus(self, index):
         if index < 0 or index > self.count-1:
@@ -131,7 +134,13 @@ class LinkedBuku:
             nodeUpdate = nodeUpdate.next
         nodeUpdate.Status = "Out Of Stock"
 
-       def insertData(self, Judul, Pengarang, Penerbit, Genre, Tahun, Status):
+    def ubahStatus2(self, index):
+        nodeUpdate = self.head
+        for i in range(index):
+            nodeUpdate = nodeUpdate.next
+        nodeUpdate.Status = "Available"
+
+    def insertData(self, Judul, Pengarang, Penerbit, Genre, Tahun, Status):
         if self.head is None:
             self.head = NodeBuku(Judul, Pengarang, Penerbit, Genre, Tahun, Status)
             self.count += 1
@@ -144,7 +153,7 @@ class LinkedBuku:
     
     def newData(self, JudulBaru, PengarangBaru, PenerbitBaru, GenreBaru, TahunBaru, StatusBaru):
         try:
-            LinkedBuku.insertData(JudulBaru, PengarangBaru, PenerbitBaru, GenreBaru, TahunBaru, StatusBaru)
+            buku.insertData(JudulBaru, PengarangBaru, PenerbitBaru, GenreBaru, TahunBaru, StatusBaru)
             print()
             print(">>> Data Baru Berhasil Ditambakan! <<<")
             print()
@@ -177,7 +186,7 @@ class LinkedBuku:
                 return
             prev.next = temp.next
             temp = None
-        
+
     def printList(self):
         if self.head is None:
             print("Data Masih Kosong!")
@@ -201,7 +210,7 @@ class LinkedBuku:
         print("Genre        : {}".format(node.Genre))
         print("Tahun Terbit : {}".format(node.Tahun))
         print("Status       : {}".format(node.Status))
-        
+
     def sortMerge(self, a, b):
         result = None
         if a == None:
@@ -236,7 +245,7 @@ class LinkedBuku:
         right = self.mergeSort(next_middle)
         sortedlist = self.sortMerge(left, right)
         return sortedlist
-
+    
     def searchKey(self, index):
         if index < 0 or index > self.count-1:
             print()
@@ -282,7 +291,7 @@ class LinkedBuku:
         print("Genre        : {}".format(arr[index_buku]["Genre"]))
         print("Tahun Terbit : {}".format(arr[index_buku]["Tahun Terbit"]))
         print("Status       : {}".format(arr[index_buku]["Status"]))
-        
+
 buku = LinkedBuku()
 
 class Admin:
@@ -470,6 +479,7 @@ class User:
                     print(" {}. {}".format(nomor, i))
                     nomor += 1
                 print()
+
 user = User()
 
 def menu_utama():
