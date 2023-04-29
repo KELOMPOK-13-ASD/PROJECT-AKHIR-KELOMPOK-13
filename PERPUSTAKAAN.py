@@ -102,4 +102,38 @@ def login_pangunjung():
         self.Genre = Genre
         self.Tahun = Tahun
         self.Status = Status
-        self.next = None               
+        self.next = None    
+        
+class LinkedBuku:
+    def __init__(self):
+        self.head = None
+        self.count = 0
+        self.riwayatPinjam = []
+        self.datarBacaan = []
+
+    def getData(self, index):
+        if index < 0 or index > self.count-1:
+            os.system("cls")
+            print(">>> Data Tersebut Tidak Tersedia! <<<")
+            return False
+        else:
+            nodeTampil = self.head
+            for i in range(index):
+                nodeTampil = nodeTampil.next
+            LinkedBuku.printData(nodeTampil)
+
+    def getStatus(self, index):
+        if index < 0 or index > self.count-1:
+            os.system("cls")
+            return False
+        else:
+            nodeTampil = self.head
+            for i in range(index):
+                nodeTampil = nodeTampil.next
+            return nodeTampil.Status
+    
+    def ubahStatus(self, index):
+        nodeUpdate = self.head
+        for i in range(index):
+            nodeUpdate = nodeUpdate.next
+        nodeUpdate.Status = "Out Of Stock"
