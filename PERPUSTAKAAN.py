@@ -243,3 +243,51 @@ class LinkedBuku:
         right = self.mergeSort(next_middle)
         sortedlist = self.sortMerge(left, right)
         return sortedlist
+
+    def searchKey(self, index):
+        if index < 0 or index > self.count-1:
+            print()
+            print(">>> Data Tersebut Tidak Tersedia! <<<")
+        else:
+            nodeTampil = self.head
+            for i in range(index):
+                nodeTampil = nodeTampil.next
+            return nodeTampil.Judul
+        
+    def makeList(self):
+        values = []
+        current = self.head
+        while current is not None:
+            values.append({"Judul":(current.Judul), "Pengarang":(current.Pengarang), "Penerbit":(current.Penerbit),
+                           "Genre":(current.Genre), "Tahun Terbit":(current.Tahun), "Status":(current.Status)})
+            current = current.next
+        return values      
+
+    def jumpSearch(self, arr, nama_buku, n):
+        x = nama_buku
+        step = math.sqrt(n)  
+        prev = 0
+        while arr[int(min(step, n) - 1)]["Judul"].lower() < x.lower():
+            prev = step
+            step += math.sqrt(n)
+            if prev >= n:
+                return -1
+        while arr[int(prev)]["Judul"].lower() < x.lower():
+            prev += 1
+            if prev == min(step, n):
+                return -1
+        if arr[int(prev)]["Judul"].lower() == x.lower():
+            return prev
+        return -1
+    
+    def printDict(self, arr, index_buku):
+        print("                            DETAIL BUKU")
+        print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+        print("Judul        : {}".format(arr[index_buku]["Judul"]))
+        print("Pengarang    : {}".format(arr[index_buku]["Pengarang"]))
+        print("Penerbit     : {}".format(arr[index_buku]["Penerbit"]))
+        print("Genre        : {}".format(arr[index_buku]["Genre"]))
+        print("Tahun Terbit : {}".format(arr[index_buku]["Tahun Terbit"]))
+        print("Status       : {}".format(arr[index_buku]["Status"]))
+        
+buku = LinkedBuku()
