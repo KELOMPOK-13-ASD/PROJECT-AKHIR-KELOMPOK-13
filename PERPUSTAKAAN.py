@@ -474,3 +474,48 @@ class Admin:
                     print(" {}. {}".format(nomor, i))
                     nomor += 1
                 print()
+
+                def menu_utama():
+    print("========================================".center(80))
+    print("|                Menu Utama             |".center(80))
+    print("========================================".center(80))
+    print("1. Login Admin".center(80))
+    print("2. Login User".center(80))
+    print("3. Registrasi User".center(80))
+    print("4. Exit".center(80))
+    print("========================================".center(80))
+
+def menu_admin():
+    print("========================================".center(80))
+    print("|                 Menu Admin            |".center(80))
+    print("========================================".center(80))
+    print("1. Lihat Data Buku".center(80))
+    print("2. Cari Data Buku".center(80))
+    print("3. Tambah Buku Baru".center(80))
+    print("4. Hapus Buku".center(80))
+    print("5. Exit".center(80))
+    print("========================================".center(80))
+
+def menu_pengunjung():
+    print("========================================".center(80))
+    print("|                Menu User              |".center(80))
+    print("========================================".center(80))
+    print("1. Lihat Data Buku".center(80))
+    print("2. Cari Data Buku".center(80))
+    print("3. Pinjam Buku".center(80))
+    print("4. Kembalikan Buku".center(80))
+    print("5. History".center(80))
+    print("6. Exit".center(80))
+    print("========================================".center(80))
+
+def ulang():
+    while True:
+        tanya = input("Kembali Ke Menu (y/n)? ")
+        if tanya == "y" or tanya == "Y":
+            break
+        elif tanya == "n" or tanya == "N":
+            os.system("cls")
+            print("Terima Kasih Telah Berkunjung ^_^".center(80))
+            exit()
+        else:
+            print(">>> Masukkan Dengan Benar! <<<")
