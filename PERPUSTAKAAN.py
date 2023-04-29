@@ -208,3 +208,38 @@ class LinkedBuku:
         print("Genre        : {}".format(node.Genre))
         print("Tahun Terbit : {}".format(node.Tahun))
         print("Status       : {}".format(node.Status))
+        
+    def sortMerge(self, a, b):
+        result = None
+        if a == None:
+            return b
+        if b == None:
+            return a
+        if a.Judul < b.Judul:
+            result = a
+            result.next = self.sortMerge(a.next, b)
+        else:
+            result = b
+            result.next = self.sortMerge(a, b.next)
+        return result
+
+    def getMiddle(self, head):
+        if head == None:
+            return head
+        slow = head
+        fast = head
+        while fast.next != None and fast.next.next != None:
+            slow = slow.next
+            fast = fast.next.next
+        return slow    
+
+    def mergeSort(self, c):
+        if c == None or c.next == None:
+            return c
+        middle = self.getMiddle(c)
+        next_middle = middle.next
+        middle.next = None
+        left = self.mergeSort(c)
+        right = self.mergeSort(next_middle)
+        sortedlist = self.sortMerge(left, right)
+        return sortedlist
