@@ -184,3 +184,27 @@ class LinkedBuku:
                 return
             prev.next = temp.next
             temp = None
+        
+    def printList(self):
+        if self.head is None:
+            print("Data Masih Kosong!")
+        else:
+            print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+            print("                     List Buku")
+            print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+            number = 1
+            nodeTampil = self.head
+            while nodeTampil is not None:
+                print(number, nodeTampil.Judul)
+                number += 1
+                nodeTampil = nodeTampil.next
+
+    def printData(self, node):
+        print("                            DETAIL BUKU")
+        print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+        print("Judul        : {}".format(node.Judul))
+        print("Pengarang    : {}".format(node.Pengarang))
+        print("Penerbit     : {}".format(node.Penerbit))
+        print("Genre        : {}".format(node.Genre))
+        print("Tahun Terbit : {}".format(node.Tahun))
+        print("Status       : {}".format(node.Status))
