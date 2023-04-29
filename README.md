@@ -45,7 +45,7 @@ Program ini menggunakan database mysql pada registrasi dan login dengan cara ker
 - Sebagai admin, kita dapat melakukan beberapa hal seperti melihat, mencari, menambah dan menghapus data buku. Intinya admin dapat melakukan pengelolaan data pada setiap buku
 
 ![alt text](https://github.com/KELOMPOK-13-ASD/Project-Akhir_Kelompok-13/blob/master/Pilihan%201%20(Admin).png?raw=true)
-- Jika admin ingin melihat daftar buku yang tersedia di dalam perpustakkan, maka admin dapat memilih pilihan pertama dan kemudian akan ditampilkan tampilan seperti yang ada pada gambar diatas.
+- Jika admin ingin melihat daftar buku yang tersedia di dalam perpustakaan, maka admin dapat memilih pilihan pertama dan kemudian akan ditampilkan tampilan seperti yang ada pada gambar diatas.
 
 ![alt text](https://github.com/KELOMPOK-13-ASD/Project-Akhir_Kelompok-13/blob/master/Pilihan%202%20(Admin).png?raw=true)
 - Jika admin ingin mencari dan melihat detail buku, maka admin dapat memilih pilihan kedua, kemudian admin dapat memasukkan judul buku yang ingin dicari. Setelah itu akan ditampilkan tampilan seperti yang ada pada gambar yang ada di atas.
@@ -63,7 +63,7 @@ Program ini menggunakan database mysql pada registrasi dan login dengan cara ker
 - Jika pengunjung ingin melihat daftar buku apa saja yang tersedia di dalam perpustakaan, maka pengunjung dapat memilih pilihan pertama. Kemudian akan ditampilkan tampilan seperti yang ada pada gambar diatas.
 
 ![alt text](https://github.com/KELOMPOK-13-ASD/Project-Akhir_Kelompok-13/blob/master/Pilihan%202%20(User).png?raw=true)
-- Jika pengunjung ingin mecari dam melihat detail buku, maka pengunjung dapat memilih pilihan kedua, kemudian pengunjung dapat memasukkan judul buku yang ingin dicari. Setelah itu akan ditampilkan tampilan sperti yang ada pada gambar yang ada diatas.
+- Jika pengunjung ingin mecari dan melihat detail buku, maka pengunjung dapat memilih pilihan kedua, kemudian pengunjung dapat memasukkan judul buku yang ingin dicari. Setelah itu akan ditampilkan tampilan seperti yang ada pada gambar yang ada diatas.
 
 ![alt text](https://github.com/KELOMPOK-13-ASD/Project-Akhir_Kelompok-13/blob/master/Pilihan%203%20(User)%20(2).png?raw=true)
 - Jika pengunjung ingin meminjam buku, maka pengunjung dapat memilih pilihan ketiga, kemudian pengunjung dapat memilih buku yang akan di pinjam. Setelah itu akan ditampilkan konfirmasi peminjaman seperti gambar yang ada di atas.
